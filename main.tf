@@ -1,10 +1,12 @@
 locals {
-    # !Set! of APIs to activate
+    # Set of APIs to activate
     apis = toset(
         [
             "storagetransfer.googleapis.com"
         ]
     )
+
+    # ...
 }
 
 resource "google_project_service" "activate-api" {
