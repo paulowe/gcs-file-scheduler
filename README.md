@@ -6,4 +6,6 @@ This repository builds an automated way to transfer and schedule Google Cloud St
 
 1. Download and configure the Google Cloud SDK
 2. Run ``` auth application-default login ```
+3. Create a virtual environment and activate it
+4. Install all python packages in requirements.txt
 
