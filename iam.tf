@@ -42,12 +42,23 @@ resource "google_project_iam_binding" "storage-admin" {
 project-PROJECT_NUMBER@storage-transfer-service.iam.gserviceaccount.com
  */
 
-resource "google_project_iam_binding" "storage-admin" {
+
+locals {
+    gm_serviceaccount = toset(
+        [
+            "roles/storage.objectViewer",
+            "roles/storage.legacyBucketReader",
+            "roles/storage.legacyBucketWriter"
+        ]
+    )
+}
+resource "google_project_iam_binding" "gm-serviceaccount-permissions" {
   project = var.project_id
-  role    = "roles/storage.objectView"
+  for_each = local.gm_serviceaccount
+  role    = each.key
 
   members = [
-    "serviceAccount:project-PROJECT_NUMBER@storage-transfer-service.iam.gserviceaccount.com",
+    "project-312957359553@storage-transfer-service.iam.gserviceaccount.com",
   ]
 }
 
